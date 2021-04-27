@@ -1,9 +1,11 @@
+const fs = require('fs');
 const inquirer = require("inquirer");
 const Employee = require("./lib/employee");
 const Manager = require("./lib/manager");
 const Intern = require("./lib/intern");
 const Engineer = require("./lib/engineer");
 let teamMembers = [];
+var html = ``;
 
 const managerQuestions = [
   {
@@ -97,6 +99,9 @@ function newManager() {
       response.managerOffice
     );
     teamMembers.push(manager);
+
+    
+
     addNext();
   });
 }
@@ -161,7 +166,9 @@ function init() {
 }
 
 function exit() {
-    console.log(teamMembers)
+    console.log(teamMembers);
+    fs.writeFile('./dist/newindex.html', html, (err) =>
+    err ? console.error(err) : console.log('Success!'));
 }   
 
 
