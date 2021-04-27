@@ -102,14 +102,18 @@ function newManager() {
 }
 
 function addNext() {
-  console.log(teamMembers.length);
-  console.log(teamMembers);
-  inquirer.prompt(addMemberQuestion).then((response) => {
-    if (response.addMember) {
-      chooseNext();
-    }
-  });
-}
+  if (teamMembers.length < 5) {
+    inquirer.prompt(addMemberQuestion).then((response) => {
+      if (response.addMember == true) {
+        chooseNext();
+      } else {
+          exit();
+      }
+    
+    });
+} else {
+console.log("Maximum team size is 5 members");
+exit();}};
 
 function chooseNext() {
   inquirer.prompt(memberTypeQuestion).then((response) => {
@@ -124,16 +128,15 @@ function chooseNext() {
 
 function newEngineer() {
   console.log("----- Please enter Engineer details -----");
-
   inquirer.prompt(engineerQuestions).then((response) => {
-      let engineer = new Engineer(
-          response.engineerName,
-          response.engineerID,
-          response.engineerEmail,
-          response.engineerGithub
-      );
-      teamMembers.push(engineer);
-      console.log(teamMembers)
+    let engineer = new Engineer(
+      response.engineerName,
+      response.engineerID,
+      response.engineerEmail,
+      response.engineerGithub
+    );
+    teamMembers.push(engineer);
+    console.log(teamMembers);
     addNext();
   });
 }
@@ -141,18 +144,29 @@ function newEngineer() {
 function newIntern() {
   console.log("----- Please enter Intern details -----");
   inquirer.prompt(internQuestions).then((response) => {
-      let intern = new Intern(
-          response.internName,
-          response.internID,
-          response.internEmail,
-          response.internSchool
-      )
+    let intern = new Intern(
+      response.internName,
+      response.internID,
+      response.internEmail,
+      response.internSchool
+    );
+    teamMembers.push(intern);
     console.log(response);
     addNext();
   });
 }
 
-newManager();
+function init() {
+    newManager();
+}
+
+function exit() {
+    console.log(teamMembers)
+}   
+
+
+init();
+
 
 // fs.writeFile(./dist/index.html, )
 
