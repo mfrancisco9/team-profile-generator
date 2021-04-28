@@ -226,7 +226,7 @@ function exit() {
   </body>
   </html>
   `
-  fs.writeFile("./dist/newindex.html", html, (err) =>
+  fs.writeFile("./dist/index.html", html, (err) =>
     err ? console.error(err) : console.log("Success!")
   );
 }
