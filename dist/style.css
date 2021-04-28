@@ -1,0 +1,21 @@
+#main-header {
+    text-align: center;
+}
+
+#info {
+    margin: 10px;
+}
+
+.col {
+    float: none;
+    margin: 25px 25px;
+}
+
+#card-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
