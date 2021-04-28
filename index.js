@@ -117,7 +117,7 @@ function newManager() {
     );
     teamMembers.push(manager);
     html += `
-    <div class="col s6 m3 grey lighten-4 z-depth-3">
+    <div class="col s3 grey lighten-4 z-depth-3">
     <div class="card blue">
       <div class="card-content white-text">
         <span class="card-title">${response.managerName}</span>
@@ -126,7 +126,7 @@ function newManager() {
     </div>
     <ul class="collection" id="info">
       <li class="collection-item">ID: ${response.managerID}</li>
-      <li class="collection-item">Email: <a href="${response.managerEmail}" target="_blank">${response.managerEmail}</a>
+      <li class="collection-item">Email: <a href="mailto:${response.managerEmail}" target="_blank">${response.managerEmail}</a>
       <li class="collection-item">Office ID: ${response.managerOffice}</li>
     </ul>
   </div>
@@ -137,7 +137,6 @@ function newManager() {
 }
 
 function addNext() {
-  if (teamMembers.length < 5) {
     inquirer.prompt(addMemberQuestion).then((response) => {
       if (response.addMember == true) {
         chooseNext();
@@ -145,10 +144,6 @@ function addNext() {
         exit();
       }
     });
-  } else {
-    console.log("Maximum team size is 5 members");
-    exit();
-  }
 }
 
 function chooseNext() {
@@ -173,7 +168,7 @@ function newEngineer() {
     );
     teamMembers.push(engineer);
     html += `
-    <div class="col s6 m3 grey lighten-4 z-depth-3">
+    <div class="col s3 grey lighten-4 z-depth-3">
     <div class="card blue">
       <div class="card-content white-text">
         <span class="card-title">${response.engineerName}</span>
@@ -182,12 +177,11 @@ function newEngineer() {
     </div>
     <ul class="collection" id="info">
       <li class="collection-item">ID: ${response.engineerID}</li>
-      <li class="collection-item">Email: <a href="${response.engineerEmail}" target="_blank">${response.engineerEmail}</a>
+      <li class="collection-item">Email: <a href="mailto:${response.engineerEmail}" target="_blank">${response.engineerEmail}</a>
       <li class="collection-item">GitHub: <a href="https://github.com/${response.engineerGithub}" target="_blank">${response.engineerGithub}</li>
     </ul>
   </div>
     `
-    console.log(teamMembers);
     addNext();
   });
 }
@@ -202,9 +196,8 @@ function newIntern() {
       response.internSchool
     );
     teamMembers.push(intern);
-    console.log(response);
     html += `
-    <div class="col s6 m3 grey lighten-4 z-depth-3">
+    <div class="col s3 grey lighten-4 z-depth-3">
     <div class="card blue">
       <div class="card-content white-text">
         <span class="card-title">${response.internName}</span>
@@ -213,7 +206,7 @@ function newIntern() {
     </div>
     <ul class="collection" id="info">
       <li class="collection-item">ID: ${response.internID}</li>
-      <li class="collection-item">Email: <a href="${response.internEmail}" target="_blank">${response.internEmail}</a>
+      <li class="collection-item">Email: <a href="mailto:${response.internEmail}" target="_blank">${response.internEmail}</a>
       <li class="collection-item">School: <a href="https://github.com/${response.engineerGithub}" target="_blank">${response.Github}</li>
     </ul>
   </div>
@@ -227,7 +220,6 @@ function init() {
 }
 
 function exit() {
-  console.log(teamMembers);
   html += `
   </div>
 
